@@ -1,6 +1,16 @@
 var login = {
 
 	submit: function(){
-		console.log("submit");
+
+		var obj = {
+			username : $("#username").val(),
+			clientid : $("#clientid").val()
+		}
+
+		$.ajax({
+
+		});
+
+		alert(obj);
 	}
 };

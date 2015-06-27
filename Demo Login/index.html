@@ -12,7 +12,7 @@
         width: 100%;
         margin: 0;
         padding: 0;
-        background: linear-gradient(#CCC, #999);
+        background: linear-gradient(#673AB7, #2196F3);
       }
 
       .main-container, .login-contaner {
@@ -28,14 +28,17 @@
         .login-container {
           padding: 30px;
 
-          background: #F0F0F0;
-          border-radius: 4px;
-          box-shadow: 13px 13px 18px -5px rgba(0,0,0,1);
+          /*background: #F0F0F0;*/
+          border-radius: 2px;
+          /*box-shadow: 13px 13px 18px -5px rgba(0,0,0,1);*/
           }
           .button-container {
             display: flex;
             justify-content: center;
-          }
+            }
+            .btn {
+              width: 100%;
+            }
     </style>
 
     <script type="text/javascript" src="login.js"></script>
@@ -47,13 +50,11 @@
     <div class="main-container">
       <div class="login-container">
         <form role="form">
-          <div class="form-group">
-            <label for="email">Username:</label>
-            <input type="email" class="form-control" id="username">
+          <div class="form-group">            
+            <input type="email" class="form-control" id="username" placeholder="Username">
           </div>
           <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="clientid" placeholder="Client ID">
           </div>
           <div class="button-container">
             <button class="btn btn-default" onclick="login.submit()">Submit</button>
