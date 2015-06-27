@@ -1,58 +1,34 @@
 var polygon;
-
-// Data from Database
 var clientid = "innovationwarehouse";
-var vertices = [];
+
+/*
+  Data from Database
+*/
+// Default Coordinates for the polygon
+// If present, set the value gotten from database?
+vertices = [
+  new google.maps.LatLng(51.519558, -0.103953),
+  new google.maps.LatLng(51.519671, -0.101109),
+  new google.maps.LatLng(51.518537, -0.102740)
+];
 
 function initialize() {
 
   // Maps Options
   var mapOptions = {
     zoom: 18,
-    //center: new google.maps.LatLng(51.519084, -0.102794),
+    center: vertices[0],
     mapTypeId: google.maps.MapTypeId.TERRAIN
   };
 
   // Construct a new Map
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
-
-  // Try HTML5 geolocation
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-
-        var infowindow = new google.maps.InfoWindow({
-          map: map,
-          position: pos,
-          content: 'You are here'
-        });
-
-        map.setCenter(pos);
-      }, 
-      function() {
-        handleNoGeolocation(true);
-      }
-    );
-  } else {
-    // Browser doesn't support Geolocation
-    handleNoGeolocation(false);
-  }
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
   polygonClass(map);
 
 }
 
 function polygonClass(map) {
-
-  // Default Coordinates for the polygon
-  // If present, set the value gotten from database?
-  vertices = [
-    new google.maps.LatLng(51.519558, -0.103953),
-    new google.maps.LatLng(51.519671, -0.101109),
-    new google.maps.LatLng(51.518537, -0.102740)
-  ];
 
   // Construct a draggable blue triangle with geodesic set to false.
   polygon = new google.maps.Polygon({
@@ -69,9 +45,7 @@ function polygonClass(map) {
   });
 
   /*
-
     POLYGON EVETN LISTENERS
-
   
   // New point Inserted
   google.maps.event.addListener(polygon.getPath(), 'insert_at', function() {
@@ -99,23 +73,6 @@ function getPoints(polygon){
     coords.push(polygon.getPath().j[ind].A + "," + polygon.getPath().j[ind].F);
   }
   return coords;
-}
-
-function handleNoGeolocation(errorFlag) {
-  if (errorFlag) {
-    var content = 'Error: The Geolocation service failed.';
-  } else {
-    var content = 'Error: Your browser doesn\'t support geolocation.';
-  }
-
-  var options = {
-    map: map,
-    position: new google.maps.LatLng(51.519084, -0.102794),
-    content: content
-  };
-
-  var infowindow = new google.maps.InfoWindow(options);
-  map.setCenter(options.position);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
