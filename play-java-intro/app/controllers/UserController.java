@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import models.Client;
 import models.PendingUser;
+import models.User;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -32,6 +34,15 @@ public class UserController extends Controller {
 		{
 			String username = json.findPath("username").textValue();
 			String clientid = json.findPath("clientid").textValue();
+			
+			try
+			{
+				User user = UserController.get(username);
+			}
+			catch (Exception e)
+			{
+				
+			}
 						
 			//Randomly generate a random string for activation code
 			//RandomString random = new RandomString();
@@ -58,5 +69,11 @@ public class UserController extends Controller {
         List<PendingUser> pendings = (List<PendingUser>) JPA.em().createQuery("select p from PendingUser p").getResultList();
         return ok(toJson(pendings));
     }
+	
+	@Transactional(readOnly = true)
+	public static User get(String username)
+	{
+		return (User)JPA.em().createQuery("select p from User p where p.username='"+username+"'").getSingleResult();
+	}
 
 }

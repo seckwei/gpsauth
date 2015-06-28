@@ -4,12 +4,15 @@ import java.util.Iterator;
 import java.util.List;
 
 import models.Border;
+import models.Client;
+import models.User;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 import play.Logger;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
+import play.libs.F.Promise;
 import play.mvc.Controller;
 import play.mvc.Result;
 import utils.GeoCoordinates;
@@ -31,6 +34,10 @@ public class Authenticate extends Controller  {
 			String clientid = json.findPath("clientid").textValue();
 			
 			Logger.info("Incoming authentication request: user:"+username+" for clientid:"+clientid);
+			
+			//look for the user and client
+			Promise<Client> clientPromise = Promise.promise(()-> ClientController.get(username));
+			Promise<User> userPromise;
 			
 			String ip="";
 			String[] latlng = null;

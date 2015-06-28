@@ -13,7 +13,11 @@ POST	/register					controllers.UserController.register()
 GET		/users						controllers.UserController.getPending()
 
 #Client
-GET		/client/get					controllers.ClientController.getClient()
+GET		/clients/get					controllers.ClientController.getClient()
+GET		/clients						controllers.ClientController.index()
+POST	/clients/add					controllers.ClientController.add()
+POST	/clients/borders				controllers.ClientController.border()
+GET		/clients/border/:username		controllers.ClientController.getBorder(username: String)
 
 # Handling the header (CRU)
 OPTIONS /							controllers.Application.rootOptions()
