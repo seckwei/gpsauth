@@ -2,6 +2,7 @@ package controllers;
 
 import static play.libs.Json.toJson;
 
+import java.util.Iterator;
 import java.util.List;
 
 import models.Border;
@@ -77,6 +78,20 @@ public class ClientController extends Controller {
 	public void addBorder(String borderstr, String username)
 	{	
 		Client client = (Client)JPA.em().createQuery("select p from Client p where p.username='"+username+"'").getSingleResult();
+		
+		/*
+		 * For demo purpose only store one border
+		 */
+		if (!client.borders.isEmpty())
+		{	
+			for(int i=0; i<client.borders.size(); i++)
+			{
+				Border removeborder = client.borders.get(i);
+				client.borders.remove(removeborder);
+				JPA.em().remove(removeborder);
+			}
+		}
+		
 		
 		Border border = new Border();
 		border.client = client;

@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +27,7 @@ import play.libs.Json;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
+import utils.GPSBorder;
 import utils.GeoCoordinates;
 import utils.GeoData;
 import jsonobject.GCMmessage;
@@ -50,6 +52,11 @@ public class Authenticate extends Controller  {
 		{
 			Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.username='"+username+"'").getSingleResult();
 			msg.success = auth.success;
+			
+			if(msg.success == "success")
+			{
+				JPA.em().remove(auth);
+			}
 		}
 		catch (Exception e)
 		{
@@ -71,7 +78,7 @@ public class Authenticate extends Controller  {
 		{
 			String secret = json.findPath("secret").textValue();
 			String username = json.findPath("username").textValue();
-			String[] coord = json.findPath("coord").textValue().split(":");
+			String[] coord = json.findPath("coord").textValue().split(",");
 
 			User user = UserController.get(username);
 
@@ -85,7 +92,7 @@ public class Authenticate extends Controller  {
 				Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.username='"+username+"'").getSingleResult();
 				
 				auth.success = "sucess";
-				//Check whether the ip address match
+				//Check the distance of the two coordinates
 				if (auth.latlng != null)
 				{
 					double distance = GeoData.distance(Double.parseDouble(coord[0]), Double.parseDouble(coord[1]),Double.parseDouble(auth.latlng[0]), Double.parseDouble(auth.latlng[1]),'k');
@@ -96,7 +103,13 @@ public class Authenticate extends Controller  {
 					}	
 				}
 				
+				//Check whether the borders
+				boolean within = checkAllBoundary(auth.clientusername,coord[0]+","+coord[1]);
 				
+				if(!within)
+				{
+					auth.success ="fail";
+				}
 				
 				JPA.em().persist(auth);
 			}
@@ -197,28 +210,25 @@ public class Authenticate extends Controller  {
 		return ok();
 	}
 
-	public String pingMobile(String gcmid)
-	{
-		String latlng="";
-
-
-
-		return latlng;
-	}
-
 	@Transactional(readOnly = true)
 	public boolean checkAllBoundary(String clientid, String latlng)
 	{
 		boolean within = true;
 
-		//Get the boundaries details
-		List<Border> borders = (List<Border>) JPA.em().createQuery("select p from Border p where p.clientid="+clientid).getResultList();
+		double lat = Double.parseDouble(latlng.split(",")[0]);
+		double lon = Double.parseDouble(latlng.split(",")[1]);
 
-		if (borders.isEmpty())
+		
+		//Get the client
+		Client client = ClientController.get(clientid);
+		
+		List<Border> borders = client.borders;
+		
+		if(borders.isEmpty())
 		{
 			return true;
 		}
-
+		
 		Iterator it = borders.iterator();
 
 		while(it.hasNext())
@@ -227,10 +237,24 @@ public class Authenticate extends Controller  {
 
 			String[] LatLngs = border.coordinates.split(";");
 
-			if (!GeoCoordinates.InsidePolygon(LatLngs, latlng))
+			ArrayList<String> polygon = new ArrayList<String>();
+			
+			for(int i=0; i< LatLngs.length; i++)
 			{
-				return false;
+				polygon.add(LatLngs[i]);
 			}
+			ArrayList<Double> lat_array = new ArrayList<Double>();
+		    ArrayList<Double> long_array = new ArrayList<Double>();
+		    
+		    for(String s : polygon){
+		        lat_array.add(Double.parseDouble(s.split(",")[0]));
+		        long_array.add(Double.parseDouble(s.split(",")[1]));
+		    }
+			
+		    if (!GPSBorder.coordinate_is_inside_polygon(lat, lon, lat_array, long_array))
+		    {
+		    	return false;
+		    }
 		}
 
 		return within;

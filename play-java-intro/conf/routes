@@ -26,6 +26,8 @@ GET		/clients/border/:username		controllers.ClientController.getBorder(username:
 #Auth
 GET		/auth/test					controllers.Authenticate.test(gcmid: String, msg: String)
 POST 	/auth						controllers.Authenticate.auth()
+POST	/auth/reply					controllers.Authenticate.reply()
+POST	/auth/check					controllers.Authenticate.respondserver()
 
 # Handling the header (CRU)
 OPTIONS /							controllers.Application.rootOptions()

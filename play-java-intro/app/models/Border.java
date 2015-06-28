@@ -14,7 +14,7 @@ public class Border {
 	public String coordinates;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="client_id")
 	@JsonBackReference
 	public Client client;
