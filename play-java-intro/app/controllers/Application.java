@@ -72,7 +72,7 @@ public class Application extends Controller {
 				}
 			}
 		}
-		response().setHeader("Access-Control-Allow-Origin", "*");
+		//response().setHeader("Access-Control-Allow-Origin", "*");
 		return ok("Success!");
 	}
 }

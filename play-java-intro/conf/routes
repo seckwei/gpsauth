@@ -12,6 +12,9 @@ POST	/test						controllers.Application.test()
 POST	/register					controllers.UserController.register()
 GET		/users						controllers.UserController.getPending()
 
+#Client
+GET		/client/get					controllers.ClientController.getClient()
+
 # Handling the header (CRU)
 OPTIONS /							controllers.Application.rootOptions()
 OPTIONS /*url						controllers.Application.options(url: String)
