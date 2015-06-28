@@ -5,6 +5,7 @@ version := "1.0-SNAPSHOT"
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
 libraryDependencies ++= Seq(
+  javaWs,
   javaJpa,
   "org.hibernate" % "hibernate-entitymanager" % "4.3.7.Final"
 )     

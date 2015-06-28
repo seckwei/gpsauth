@@ -11,6 +11,7 @@ public class User {
 
     public String username;
     public String secret;
+    public String gcm_regid;
     
     
 }

@@ -1,6 +1,7 @@
 package controllers;
 
 import play.*;
+import play.libs.Json;
 import play.mvc.*;
 import play.mvc.Http.Response;
 import play.db.jpa.*;
@@ -57,12 +58,15 @@ public class Application extends Controller {
 	public Result test(){
 		JsonNode json = request().body().asJson();
 		if (json == null){
+			Logger.info("No json");
 			return badRequest("Expecting Json data!");
 		}
 		else
-		{
+		{	
 			String clientid = json.findPath("clientid").textValue();
 			JsonNode coords = json.get("coords");
+		
+			Logger.info("clientid"+clientid);
 			
 			if (coords.isArray())
 			{
@@ -72,7 +76,7 @@ public class Application extends Controller {
 				}
 			}
 		}
-		response().setHeader("Access-Control-Allow-Origin", "*");
+		//response().setHeader("Access-Control-Allow-Origin", "*");
 		return ok("Success!");
 	}
 }
