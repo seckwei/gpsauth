@@ -98,7 +98,7 @@ function sendCoords(){
 
   $.ajax({
     type: "POST",
-    url: "http://10.0.5.114:9000/test",
+    url: "http://10.0.5.206:9000/test",
     data: JSON.stringify(obj),
     dataType: "json",
     contentType: "application/json; charset=utf-8",
