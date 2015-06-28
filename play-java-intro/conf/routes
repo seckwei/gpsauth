@@ -10,7 +10,11 @@ POST	/test						controllers.Application.test()
 
 # User
 POST	/register					controllers.UserController.register()
-GET		/users						controllers.UserController.getPending()
+GET		/users						controllers.UserController.getall()
+POST	/activate					controllers.UserController.activate()
+POST	/addpending					controllers.UserController.addPending()
+GET		/pendings					controllers.UserController.pendingindex()
+GET		/pendings/get				controllers.UserController.getallPending()
 
 #Client
 GET		/clients/get					controllers.ClientController.getClient()
@@ -18,6 +22,10 @@ GET		/clients						controllers.ClientController.index()
 POST	/clients/add					controllers.ClientController.add()
 POST	/clients/borders				controllers.ClientController.border()
 GET		/clients/border/:username		controllers.ClientController.getBorder(username: String)
+
+#Auth
+GET		/auth/test					controllers.Authenticate.test(gcmid: String, msg: String)
+POST 	/auth						controllers.Authenticate.auth()
 
 # Handling the header (CRU)
 OPTIONS /							controllers.Application.rootOptions()
