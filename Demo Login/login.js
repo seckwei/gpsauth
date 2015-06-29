@@ -1,11 +1,10 @@
 var login = {
 
-	rand : "",
 	url : "http://172.16.7.243:9000/",
 
 	submit: function(){
 
-		rand = login.generator()
+		var rand = login.generator()
 
 		var obj = {
 			username : $("#username").val(),
@@ -23,12 +22,11 @@ var login = {
 		    dataType: "json",
 		    contentType: "application/json; charset=utf-8",
 		    success: function(result){
-		      console.log(result);
-
-		      login.ping();
+		    	console.log("Login results",result);
 		    },
 		    error: function(XMLHttpRequest, textStatus, errorThrown) {
-		       console.log(XMLHttpRequest, textStatus, errorThrown);
+		    	console.log(XMLHttpRequest, textStatus, errorThrown);
+		    	login.ping(rand)
 		    }
 		});
 	},
@@ -46,17 +44,19 @@ var login = {
 	    return text;
 	},
 
-	ping: function(){
+	ping: function(rand){
+		console.log("called ping");
 
 		var interval = setInterval(function(){
-			console.log(login.url + "auth/check/" + login.rand);
+			console.log(login.url + "auth/check/" + rand);
 			$.ajax({
 				type: "GET",
-			    url: login.url + "auth/check/" + login.rand,
+			    url: login.url + "auth/check/" + rand,
 			    success: function(result){
 
-					var r = JSON.parse(results);					
-					console.log("Returned", r);
+			    	console.log("Returned result",result)
+					var r = JSON.parse(result);				
+					console.log("Parsed JSON", r);
 
 					if(r.success == "success"){
 						clearInterval(interval);
