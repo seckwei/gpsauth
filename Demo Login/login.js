@@ -4,7 +4,10 @@ var login = {
 
 		var obj = {
 			username : $("#username").val(),
-			clientid : "innovationwarehouse"
+			clientid : "innovationwarehouse",
+			coord : navigator.geolocation.getCurrentPosition(function(position) {
+					return position.coords.latitude+","+position.coords.longitude;
+					});
 		}
 
 		console.log(JSON.stringify(obj));
@@ -24,3 +27,4 @@ var login = {
 		});
 	}
 };
+

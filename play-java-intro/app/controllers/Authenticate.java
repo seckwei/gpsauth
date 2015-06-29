@@ -1,5 +1,7 @@
 package controllers;
 
+import static play.libs.Json.toJson;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +19,7 @@ import com.sun.javafx.runtime.SystemProperties;
 
 import play.Logger;
 import play.Play;
+import play.data.Form;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.mvc.*;
@@ -44,14 +47,14 @@ public class Authenticate extends Controller  {
 	@Inject WSClient ws;
 	
 	@Transactional (readOnly =true)
-	public Result respondserver(String username)
+	public Result respondserver(String random)
 	{
 		ResponseMessage msg = new ResponseMessage();
-		msg.username = username;
 		try
 		{
-			Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.username='"+username+"'").getSingleResult();
+			Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.random='"+random+"'").getSingleResult();
 			msg.success = auth.success;
+			msg.username = auth.username;
 			
 			if(msg.success == "success")
 			{
@@ -77,10 +80,12 @@ public class Authenticate extends Controller  {
 		else
 		{
 			Logger.info("Incoming gps data from phone");
+			Logger.info("Body:"+request().body());
 			
 			String secret = json.findPath("secret").textValue();
 			String username = json.findPath("username").textValue();
 			String[] coord = json.findPath("coord").textValue().split(",");
+			String random = json.findPath("random").textValue();
 
 			User user = UserController.get(username);
 
@@ -92,13 +97,15 @@ public class Authenticate extends Controller  {
 
 			try
 			{
-				Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.username='"+username+"'").getSingleResult();
+				Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.random='"+random+"'").getSingleResult();
 				
 				auth.success = "sucess";
 				//Check the distance of the two coordinates
 				if (auth.latlng != null)
 				{
 					double distance = GeoData.distance(Double.parseDouble(coord[0]), Double.parseDouble(coord[1]),Double.parseDouble(auth.latlng[0]), Double.parseDouble(auth.latlng[1]),'k');
+					
+					Logger.info("Distance is "+distance+"km");
 					
 					if (distance >= 0.5)
 					{
@@ -122,17 +129,19 @@ public class Authenticate extends Controller  {
 				return badRequest("Already expired");
 			}
 		}
+		Logger.info("Success replied");
 		return ok();
 	}
 
 	@Transactional
-	public static void expire(String username)
+	public static void expire(String random)
 	{
 		try
 		{
-			Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.username='"+username+"'").getSingleResult();
+			Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.random='"+random+"'").getSingleResult();
 
 			JPA.em().remove(auth);
+			Logger.info("Entry timedout!");
 
 		}catch (Exception e)
 		{
@@ -151,10 +160,12 @@ public class Authenticate extends Controller  {
 		}
 		else
 		{
-
+			Logger.info("Body:"+request().body());
+			
 			String username = json.findPath("username").textValue();
 			String clientusername = json.findPath("clientid").textValue();
 			String respondurl = json.findPath("respondurl").textValue();
+			String random = json.findPath("random").textValue();
 
 			Logger.info("Incoming authentication request: user:"+username+" for clientusername:"+clientusername);
 
@@ -170,7 +181,7 @@ public class Authenticate extends Controller  {
 			{
 				return badRequest("No such user exist");
 			}
-			Promise<String> googleResponse=send_notification(user.gcm_regid,"data");
+			Promise<String> googleResponse=send_notification(user.gcm_regid,random);
 
 			String ip="";
 			String[] latlng = null;
@@ -196,6 +207,8 @@ public class Authenticate extends Controller  {
 			//Put the data into the database
 			Auth auth = new Auth();
 			auth.clientusername = client.username;
+			auth.username = user.username;
+			auth.random = random;
 			auth.ipaddress = ip;
 			auth.latlng = latlng;
 			auth.success="pending";
@@ -204,7 +217,7 @@ public class Authenticate extends Controller  {
 			//Set a scheduler to remove the entry if it is timeout
 			Akka.system().scheduler().scheduleOnce(
 		            Duration.create(120, TimeUnit.SECONDS),
-		            () -> {expire(client.username); Logger.info("Entry timedout!");},
+		            () -> {expire(random); },
 		            Akka.system().dispatcher()
 		    );
 
@@ -282,10 +295,12 @@ public class Authenticate extends Controller  {
 		GCMmessage message = new GCMmessage();
 		GCMmessage.data data = message.new data();
 		message.to = registration_id;
-		data.payload = payload;
+		data.message = payload;
 
 		JsonNode messageJson = Json.toJson(message);
 
+		Logger.info("Json is"+data.message);
+		
 		Promise<String> responsePromise = wsrequest.post(messageJson).map(response-> {			
 			int status = response.getStatus();
 
@@ -298,5 +313,13 @@ public class Authenticate extends Controller  {
 
 		return responsePromise;
 	}
+	
+	@Transactional (readOnly = true)
+	public Result getAllAuth()
+	{
+		List<Auth> auth = (List<Auth>) JPA.em().createQuery("select p from Auth p").getResultList();
+        return ok(toJson(auth));
+	}
+
 
 }

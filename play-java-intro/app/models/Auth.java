@@ -19,5 +19,6 @@ public class Auth {
 	public String[] latlng;
 	public int accuracy;
 	public String success;
+	public String random;
 
 }

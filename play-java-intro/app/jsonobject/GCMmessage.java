@@ -5,7 +5,7 @@ public class GCMmessage {
 	public String to;
 	public class data
 	{
-		public String payload;
+		public String message;
 	}
 
 }
