@@ -82,6 +82,7 @@ public class UserController extends Controller {
 		}
 		else
 		{
+			Logger.info("Incoming user activation");
 			String username = json.findPath("username").textValue();
 			String activationcode = json.findPath("activationcode").textValue();
 			String gcmreg_id = json.findPath("gcm_regid").textValue();
@@ -148,6 +149,20 @@ public class UserController extends Controller {
 	public static User get(String username)
 	{
 		return (User)JPA.em().createQuery("select p from User p where p.username='"+username+"'").getSingleResult();
+	}
+	
+	public Result userindex()
+	{
+		return ok(userindex.render());
+	}
+	
+	@Transactional
+	public Result addUser()
+	{
+		User user = Form.form(User.class).bindFromRequest().get();
+		JPA.em().persist(user);
+		
+		return redirect(routes.UserController.userindex());
 	}
 
 }

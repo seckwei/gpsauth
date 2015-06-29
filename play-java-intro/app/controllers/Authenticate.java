@@ -76,16 +76,19 @@ public class Authenticate extends Controller  {
 		}
 		else
 		{
+			Logger.info("Incoming gps data from phone");
+			
 			String secret = json.findPath("secret").textValue();
 			String username = json.findPath("username").textValue();
 			String[] coord = json.findPath("coord").textValue().split(",");
 
 			User user = UserController.get(username);
 
+			/*
 			if (!user.secret.equals(secret))
 			{
 				return badRequest("Incorrect secret!");
-			}
+			}*/
 
 			try
 			{
@@ -143,11 +146,11 @@ public class Authenticate extends Controller  {
 		JsonNode json = request().body().asJson();
 
 		if (json == null){
+			Logger.info("No json");
 			return badRequest("Expecting Json data");
 		}
 		else
 		{
-			boolean isauth = true;
 
 			String username = json.findPath("username").textValue();
 			String clientusername = json.findPath("clientid").textValue();

@@ -16,6 +16,9 @@ POST	/addpending					controllers.UserController.addPending()
 GET		/pendings					controllers.UserController.pendingindex()
 GET		/pendings/get				controllers.UserController.getallPending()
 
+POST	/users/add					controllers.UserController.addUser()
+GET		/user						controllers.UserController.userindex()
+
 #Client
 GET		/clients/get					controllers.ClientController.getClient()
 GET		/clients						controllers.ClientController.index()
@@ -27,7 +30,7 @@ GET		/clients/border/:username		controllers.ClientController.getBorder(username:
 GET		/auth/test					controllers.Authenticate.test(gcmid: String, msg: String)
 POST 	/auth						controllers.Authenticate.auth()
 POST	/auth/reply					controllers.Authenticate.reply()
-POST	/auth/check					controllers.Authenticate.respondserver()
+GET		/auth/check					controllers.Authenticate.respondserver(username: String)
 
 # Handling the header (CRU)
 OPTIONS /							controllers.Application.rootOptions()
