@@ -8,20 +8,19 @@ var login = {
 		}
 
 		console.log(JSON.stringify(obj));
-		
+
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:9000/auth",
-			data: JSON.stringify(obj),
-			dataType: "json",
-			contentType: "application/json; charset=utf-8",
-			success: function(result){
-			  alert("Success");
-			  console.log(result);
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-			   console.log(XMLHttpRequest, textStatus, errorThrown);
-			}
-		  });
+		    url: "http://192.168.15.181:9000/auth",
+		    data: JSON.stringify(obj),
+		    dataType: "json",
+		    contentType: "application/json; charset=utf-8",
+		    success: function(result){
+		      console.log(result);
+		    },
+		    error: function(XMLHttpRequest, textStatus, errorThrown) {
+		       console.log(XMLHttpRequest, textStatus, errorThrown);
+		    }
+		});
 	}
 };
