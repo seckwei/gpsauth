@@ -1,3 +1,5 @@
+var interval;
+
 var login = {
 
 	url : "http://172.16.7.243:9000/",
@@ -47,23 +49,25 @@ var login = {
 	ping: function(rand){
 		console.log("called ping");
 
-		var interval = setInterval(function(){
+		interval = setInterval(function(){
 			console.log(login.url + "auth/check/" + rand);
 			$.ajax({
 				type: "GET",
 			    url: login.url + "auth/check/" + rand,
-			    success: function(result){
+			    success: function(r){
 
-			    	console.log("Returned result",result)
-					var r = JSON.parse(result);				
-					console.log("Parsed JSON", r);
+			    	console.log("Returned result",r);
 
-					if(r.success == "success"){
+					if(r.success == "sucess"){
 						clearInterval(interval);
+						interval = 0;
+
 						login.succeeded();
 					}
 					else if(r.success == "fail"){
 						clearInterval(interval);
+						interval = 0;
+
 						login.failed();
 					}
 			    	else {
@@ -71,11 +75,17 @@ var login = {
 			    	}
 			    },
 			    error: function(XMLHttpRequest, textStatus, errorThrown) {
-			       clearInterval(interval);
-			       console.log(XMLHttpRequest, textStatus, errorThrown);
+					clearInterval(interval);
+					interval = 0;
+
+					console.log(XMLHttpRequest, textStatus, errorThrown);
 			    }
 			});
 		},2000);
+	},
+
+	succeeded: function(){
+		alert("LOGIN SUCCESFULL");
 	}
 
 
