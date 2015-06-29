@@ -41,7 +41,7 @@
             }
     </style>
 
-    <script type="text/javascript" src="login.js"></script>
+    
      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script type="text/javascript" src="map.js"></script>
   </head>
@@ -58,7 +58,7 @@
           <input type="password" class="form-control" id="pwd" placeholder="Password">
         </div>
         <div class="button-container">
-          <button class="btn btn-default" onclick="login.submit()">Submit</button>
+          <button id="sub" class="btn btn-default" onclick="login.submit()">Submit</button>
         </div>
       </div>
     </div>
@@ -68,5 +68,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <div id="map-canvas" display="none"></div>
+
+    <script type="text/javascript" src="login.js"></script>
   </body>
 </html>
