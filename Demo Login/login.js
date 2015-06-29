@@ -5,9 +5,8 @@ var login = {
 		var obj = {
 			username : $("#username").val(),
 			clientid : "innovationwarehouse",
-			coord : navigator.geolocation.getCurrentPosition(function(position) {
-					return position.coords.latitude+","+position.coords.longitude;
-					});
+			latlng 	 : latlng,
+			random	 : login.generator(),
 		}
 
 		console.log(JSON.stringify(obj));
@@ -25,6 +24,18 @@ var login = {
 		       console.log(XMLHttpRequest, textStatus, errorThrown);
 		    }
 		});
+	},
+
+	generator: function(){
+
+		var text = "";
+
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	    for( var i=0; i < 6; i++ ){
+	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+	    }
+
+	    return text;
 	}
 };
-

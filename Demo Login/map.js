@@ -1,5 +1,7 @@
 var map;
 
+var latlng = "";
+
 function initialize() {
   var mapOptions = {
     zoom: 6
@@ -12,6 +14,10 @@ function initialize() {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude,
                                        position.coords.longitude);
+
+      //console.log(position.coords.latitude,position.coords.longitude);
+      
+      latlng = position.coords.latitude + "," + position.coords.longitude;
 
       var infowindow = new google.maps.InfoWindow({
         map: map,
