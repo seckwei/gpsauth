@@ -1,0 +1,9 @@
+New log file opened at Mon Jun 29 09:20:17 BST 2015 by 10732@Chunf-PC
+Sending msg to client activator-4d906153-533b-40ff-a4d5-b13ee2779802: DetachedLogEvent(LogMessage(debug,sbt server socket logs are in: C:\play framework\hackfest\play-java-intro\.sbtserver\connections\master.log))
+Sending msg to client activator-4d906153-533b-40ff-a4d5-b13ee2779802: DetachedLogEvent(LogMessage(debug,sbt general server logs are in: C:\play framework\hackfest\play-java-intro\.sbtserver\master.log))
+Sending msg to client activator-4d906153-533b-40ff-a4d5-b13ee2779802: DetachedLogEvent(LogMessage(debug,sbt client logs are in: C:\play framework\hackfest\play-java-intro\.sbtserver\connections\activator-4d906153-533b-40ff-a4d5-b13ee2779802.log))
+Reading next message from client.
+Client activator-4d906153-533b-40ff-a4d5-b13ee2779802 closed, java.net.SocketException: Software caused connection abort: recv failed, shutting down
+Stopping client.
+Dropping message (0,ReceivedResponse()) to dead client activator-4d906153-533b-40ff-a4d5-b13ee2779802
+Client activator-4d906153-533b-40ff-a4d5-b13ee2779802 thread exiting.

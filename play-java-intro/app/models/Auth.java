@@ -16,7 +16,7 @@ public class Auth {
 	public String username;
 	public String clientusername;
 	public String ipaddress;
-	public String[] latlng;
+	public String latlng;
 	public int accuracy;
 	public String success;
 	public String random;

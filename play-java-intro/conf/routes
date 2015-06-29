@@ -30,7 +30,7 @@ GET		/clients/border/:username		controllers.ClientController.getBorder(username:
 GET		/auth/test					controllers.Authenticate.test(gcmid: String, msg: String)
 POST 	/auth						controllers.Authenticate.auth()
 POST	/auth/reply					controllers.Authenticate.reply()
-GET		/auth/check					controllers.Authenticate.respondserver(random: String)
+GET		/auth/check/:random			controllers.Authenticate.respondserver(random: String)
 GET		/auth/all					controllers.Authenticate.getAllAuth()
 
 # Handling the header (CRU)

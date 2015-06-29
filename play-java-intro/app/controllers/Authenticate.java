@@ -84,8 +84,10 @@ public class Authenticate extends Controller  {
 			
 			String secret = json.findPath("secret").textValue();
 			String username = json.findPath("username").textValue();
-			String[] coord = json.findPath("coord").textValue().split(",");
+			String coord = json.findPath("coord").textValue();
 			String random = json.findPath("random").textValue();
+			
+			Logger.info("coord is"+coord);
 
 			User user = UserController.get(username);
 
@@ -97,13 +99,22 @@ public class Authenticate extends Controller  {
 
 			try
 			{
+				String[] coords = coord.split(",");
 				Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.random='"+random+"'").getSingleResult();
 				
+				Logger.info("Got auth");
 				auth.success = "sucess";
 				//Check the distance of the two coordinates
 				if (auth.latlng != null)
 				{
-					double distance = GeoData.distance(Double.parseDouble(coord[0]), Double.parseDouble(coord[1]),Double.parseDouble(auth.latlng[0]), Double.parseDouble(auth.latlng[1]),'k');
+					String[] latlng = auth.latlng.split(",");
+					double lat = Double.parseDouble(latlng[0]);
+					double lng = Double.parseDouble(latlng[1]);
+					double coordlat = Double.parseDouble(coords[0]);
+					double coordlon = Double.parseDouble(coords[1]);
+					
+					double distance = GeoData.distance(lat, lng,coordlat, coordlon,'k');
+					//double distance = 0;
 					
 					Logger.info("Distance is "+distance+"km");
 					
@@ -114,10 +125,11 @@ public class Authenticate extends Controller  {
 				}
 				
 				//Check whether the borders
-				boolean within = checkAllBoundary(auth.clientusername,coord[0]+","+coord[1]);
+				boolean within = checkAllBoundary(auth.clientusername,coord);
 				
 				if(!within)
 				{
+					Logger.info("Not within distance");
 					auth.success ="fail";
 				}
 				
@@ -125,6 +137,7 @@ public class Authenticate extends Controller  {
 			}
 			catch (Exception e)
 			{
+				Logger.info(e.getMessage());
 				Logger.info("ALready expired");
 				return badRequest("Already expired");
 			}
@@ -184,7 +197,7 @@ public class Authenticate extends Controller  {
 			Promise<String> googleResponse=send_notification(user.gcm_regid,random);
 
 			String ip="";
-			String[] latlng = null;
+			String latlng = null;
 			try
 			{
 				ip = json.findPath("ipaddress").textValue();
@@ -196,7 +209,7 @@ public class Authenticate extends Controller  {
 			}
 			try
 			{
-				latlng = json.findPath("latlng").textValue().split(":");
+				latlng = json.findPath("latlng").textValue();
 				Logger.info("latlng:"+latlng);
 			}
 			catch (Exception e)
@@ -223,7 +236,7 @@ public class Authenticate extends Controller  {
 
 		}
 
-		return ok();
+		return ok("auth!");
 	}
 
 	@Transactional(readOnly = true)
@@ -234,6 +247,9 @@ public class Authenticate extends Controller  {
 		double lat = Double.parseDouble(latlng.split(",")[0]);
 		double lon = Double.parseDouble(latlng.split(",")[1]);
 
+		Logger.info("Checking boundary");
+		Logger.info("lat: "+lat);
+		Logger.info("lon:"+ lon);
 		
 		//Get the client
 		Client client = ClientController.get(clientid);
@@ -242,6 +258,7 @@ public class Authenticate extends Controller  {
 		
 		if(borders.isEmpty())
 		{
+			Logger.info("boundary is empty");
 			return true;
 		}
 		
@@ -269,6 +286,7 @@ public class Authenticate extends Controller  {
 			
 		    if (!GPSBorder.coordinate_is_inside_polygon(lat, lon, lat_array, long_array))
 		    {
+		    	Logger.info("not within");
 		    	return false;
 		    }
 		}
@@ -298,10 +316,12 @@ public class Authenticate extends Controller  {
 		data.message = payload;
 
 		JsonNode messageJson = Json.toJson(message);
-
-		Logger.info("Json is"+data.message);
 		
-		Promise<String> responsePromise = wsrequest.post(messageJson).map(response-> {			
+		String msg = "{\"to\" : \""+registration_id+"\",\"data\":{\"message\":\""+payload+"\"}}";
+		
+		Logger.info("MSG "+msg);
+		
+		Promise<String> responsePromise = wsrequest.post(msg).map(response-> {			
 			int status = response.getStatus();
 
 			Logger.info("Status:"+status);
