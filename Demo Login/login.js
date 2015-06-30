@@ -85,7 +85,11 @@ var login = {
 	},
 
 	succeeded: function(){
-		alert("LOGIN SUCCESFULL");
+		alert("LOGIN SUCCESSFULL");
+	},
+
+	failed: function(){
+		alert("FAILED: Out of bounds");
 	}
 
 
