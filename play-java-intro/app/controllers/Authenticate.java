@@ -56,7 +56,7 @@ public class Authenticate extends Controller  {
 			msg.success = auth.success;
 			msg.username = auth.username;
 			
-			if(msg.success == "success")
+			if(msg.success == "sucess")
 			{
 				JPA.em().remove(auth);
 			}
@@ -103,6 +103,7 @@ public class Authenticate extends Controller  {
 				Auth auth = (Auth)JPA.em().createQuery("select p from Auth p where p.random='"+random+"'").getSingleResult();
 				
 				Logger.info("Got auth");
+				Logger.info(auth.clientusername);
 				auth.success = "sucess";
 				//Check the distance of the two coordinates
 				if (auth.latlng != null)

@@ -1,5 +1,5 @@
-New log file opened at Mon Jun 29 09:19:46 BST 2015 by 11556@Chunf-PC
-jvm 11556@Chunf-PC
+New log file opened at Mon Jun 29 09:20:15 BST 2015 by 10732@Chunf-PC
+jvm 10732@Chunf-PC
 jvm vmName=Java HotSpot(TM) 64-Bit Server VM vmVendor=Oracle Corporation vmVersion=25.45-b02
 jvm specName=Java Virtual Machine Specification specVendor=Oracle Corporation specVersion=1.8
 jvm arguments: [-Xms256m, -Xmx1024m, -XX:MetaspaceSize=64m, -XX:MaxMetaspaceSize=256m]
@@ -27,7 +27,7 @@ sorting: ns: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.Jvm
   :: sorted deduced result: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)
 [Loading] Done in C:\play framework\hackfest\play-java-intro\project, returning: (play-java-intro-build)
 Loading project definition from C:\play framework\hackfest\play-java-intro\project
-Running task... Cancel: sbt.TaskCancellationStrategy$Null$@299d1844, check cycles: false
+Running task... Cancel: sbt.TaskCancellationStrategy$Null$@113e5dc9, check cycles: false
 
 Initial source changes: 
 	removed:Set()
@@ -67,10 +67,839 @@ Set current project to play-java-intro (in build file:/C:/play%20framework/hackf
 > iflast shell
 > server-send-ready-for-request
 > server-handle-next-server-request
-Done executing sbt server engine, result Right(Exit(0))
-Closing listening server socket
-Waiting for socket thread
-Waiting for request processor thread
-Waiting for command engine result
-Returning control to sbt launcher with result Exit(0)
-Closing the 11556@Chunf-PC logs at Mon Jun 29 09:20:02 BST 2015, goodbye.
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@6e668202, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Total time: 7 s, completed Jun 29, 2015 9:20:37 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/compile:mainClass
+Evaluating tasks: compile:mainClass
+Running task... Cancel: sbt.server.ServerTaskCancellation@34916cb3, check cycles: false
+Total time: 1 s, completed Jun 29, 2015 9:20:38 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/compile:discoveredMainClasses
+Evaluating tasks: compile:discoveredMainClasses
+Running task... Cancel: sbt.server.ServerTaskCancellation@4f12567c, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Total time: 3 s, completed Jun 29, 2015 9:20:41 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/compile:mainClass
+Evaluating tasks: compile:mainClass
+Running task... Cancel: sbt.server.ServerTaskCancellation@19f21734, check cycles: false
+Total time: 0 s, completed Jun 29, 2015 9:20:41 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/compile:discoveredMainClasses
+Evaluating tasks: compile:discoveredMainClasses
+Running task... Cancel: sbt.server.ServerTaskCancellation@72e02472, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Total time: 2 s, completed Jun 29, 2015 9:20:42 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> backgroundRun
+Evaluating tasks: compile:backgroundRun
+Running task... Cancel: sbt.server.ServerTaskCancellation@34b205b7, check cycles: false
+Total time: 1 s, completed Jun 29, 2015 9:20:49 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkConfig
+Evaluating tasks: *:playForkConfig
+Running task... Cancel: sbt.server.ServerTaskCancellation@6a6dd4b3, check cycles: false
+Total time: 2 s, completed Jun 29, 2015 9:20:59 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> root/playForkNotifyStart http://localhost:9000
+Evaluating tasks: *:playForkNotifyStart
+Running task... Cancel: sbt.server.ServerTaskCancellation@2452352f, check cycles: false
+Total time: 0 s, completed Jun 29, 2015 9:21:09 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@8202b6f, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Warning: node.js detection failed, sbt will use the Rhino based Trireme JavaScript engine instead to run JavaScript assets compilation, which in some cases may be orders of magnitude slower than using node.js.
+Total time: 6 s, completed Jun 29, 2015 9:21:17 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@22da1f2a, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 8.849996677 s
+Java analysis took 0.219110539 s
+Java compile + analysis took 9.127528535 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 11 s, completed Jun 29, 2015 9:24:48 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@5d7ede70, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 3 s, completed Jun 29, 2015 9:24:57 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@1650f680, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 2.668105852 s
+Java analysis took 0.048299884 s
+Java compile + analysis took 2.758113194 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 9:27:07 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@18dce4d1, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 2.666527543 s
+Java analysis took 0.029444873 s
+Java compile + analysis took 2.756814078 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 5 s, completed Jun 29, 2015 9:29:21 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@7942c21d, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 4 s, completed Jun 29, 2015 9:29:25 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@420c4f6e, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 3.227641103 s
+Java analysis took 0.044181695 s
+Java compile + analysis took 3.318216556 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 9:34:11 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@636c1bef, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 3.303968017 s
+Java analysis took 0.029127185 s
+Java compile + analysis took 3.375344837 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 9:34:34 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@1eaa03dc, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 4 s, completed Jun 29, 2015 9:34:40 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@63d62550, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 3.164595888 s
+Java analysis took 0.027974352 s
+Java compile + analysis took 3.235920031 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 9:39:44 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@1865ea18, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 4 s, completed Jun 29, 2015 9:39:55 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@580ef2c5, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 3.075706531 s
+Java analysis took 0.02636079 s
+Java compile + analysis took 3.14483806 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 9:40:08 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@6f598b93, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 4 s, completed Jun 29, 2015 9:40:22 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@129a5394, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 2.843158287 s
+Java analysis took 0.028576094 s
+Java compile + analysis took 2.913295151 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 9:41:55 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@1aea6b95, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 4 s, completed Jun 29, 2015 9:42:54 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@6c9b3f61, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Total time: 0 s, completed Jun 29, 2015 9:52:56 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> jobStop 1
+Evaluating tasks: *:jobStop
+Running task... Cancel: sbt.server.ServerTaskCancellation@5c7c6fb0, check cycles: false
+Total time: 0 s, completed Jun 29, 2015 9:52:56 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> backgroundRun
+Evaluating tasks: compile:backgroundRun
+Running task... Cancel: sbt.server.ServerTaskCancellation@62cb816b, check cycles: false
+Total time: 0 s, completed Jun 29, 2015 9:52:56 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkConfig
+Evaluating tasks: *:playForkConfig
+Running task... Cancel: sbt.server.ServerTaskCancellation@777c710e, check cycles: false
+Total time: 2 s, completed Jun 29, 2015 9:53:04 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> root/playForkNotifyStart http://localhost:9000
+Evaluating tasks: *:playForkNotifyStart
+Running task... Cancel: sbt.server.ServerTaskCancellation@10e48c56, check cycles: false
+Total time: 0 s, completed Jun 29, 2015 9:53:07 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@1a296609, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 4 s, completed Jun 29, 2015 9:53:13 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@65df04c9, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 3.225428635 s
+Java analysis took 0.030597707 s
+Java compile + analysis took 3.312217363 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 9:54:05 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@4478746d, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 5 s, completed Jun 29, 2015 9:54:10 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@7396fecb, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 3.280219237 s
+Java analysis took 0.028630798 s
+Java compile + analysis took 3.354705669 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 10:51:25 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> compile
+Evaluating tasks: compile:compile
+Running task... Cancel: sbt.server.ServerTaskCancellation@3af440f4, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set(C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java)
+
+Read from stdout: Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Compiling 1 Java source to C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes...
+Read from stdout: Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Note: C:\play framework\hackfest\play-java-intro\app\controllers\Authenticate.java uses unchecked or unsafe operations.
+Read from stdout: Note: Recompile with -Xlint:unchecked for details.
+Note: Recompile with -Xlint:unchecked for details.
+Java compilation took 2.89769725 s
+Java analysis took 0.079230677 s
+Java compile + analysis took 3.033166763 s
+New invalidations:
+	Set()
+Initial set of included nodes: Set()
+Previously invalidated, but (transitively) depend on new invalidations:
+	Set()
+All newly invalidated sources after taking into account (previously) recompiled sources:Set()
+Total time: 4 s, completed Jun 29, 2015 10:51:52 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/C:/play%20framework/hackfest/play-java-intro/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@238b35ea, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(C:\play framework\hackfest\play-java-intro\conf\application.conf,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\application.conf)
+	(C:\play framework\hackfest\play-java-intro\conf\logback.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\logback.xml)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF)
+	(C:\play framework\hackfest\play-java-intro\conf\routes,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\routes)
+	(C:\play framework\hackfest\play-java-intro\conf\META-INF\persistence.xml,C:\play framework\hackfest\play-java-intro\target\scala-2.10\classes\META-INF\persistence.xml)
+Total time: 4 s, completed Jun 29, 2015 10:52:06 AM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> jobStop 2
+Evaluating tasks: *:jobStop
+Running task... Cancel: sbt.server.ServerTaskCancellation@296684c0, check cycles: false
+Total time: 0 s, completed Jun 29, 2015 12:26:20 PM
+> server-post-command-cleanup
+> server-handle-next-server-request
