@@ -2,7 +2,7 @@ var features = [
 	{
 		title 		: 'Dashboard',
 		url   		: 'dashboard',
-		templateUrl : '../pages/dashboard.html',
+		templateUrl : 'pages/dashboard.html',
 		controller  : function(title){
 			return function(){
 				this.title = title;
@@ -14,7 +14,7 @@ var features = [
 	{
 		title 		: 'Map & Bounds',
 		url   		: 'maps',
-		templateUrl : '../pages/maps/maps.html',
+		templateUrl : 'pages/maps/maps.html',
 		controller  : function(title){
 			return function(){
 				this.title = title;
@@ -26,7 +26,7 @@ var features = [
 	{
 		title 		: 'Login & Registration',
 		url   		: 'login',
-		templateUrl : '../pages/mock-login/mock-login.html',
+		templateUrl : 'pages/mock-login/mock-login.html',
 		controller  : function(title){
 			return function(){
 				this.title = title;
