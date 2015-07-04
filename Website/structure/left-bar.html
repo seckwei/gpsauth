@@ -1,0 +1,20 @@
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav side-nav">
+
+        <li ng-repeat="feature in lbCtrl.features" ng-class="{ active: lbCtrl.isSet($index) }">
+
+            <!-- Feature Icon & Title -->
+            <a href="#{{feature.url}}" data-toggle="collapse" data-target="#{{feature.dropdownID}}" ng-click="lbCtrl.setMenu($index)">
+                <i class="{{feature.icon}}"></i> {{feature.title}} <i class="{{feature.dropdownIcon}}"></i>
+            </a>
+
+            <!-- Feature's Dropdown if available -->
+            <ul ng-show="feature.dropdowns.length" id="{{feature.dropdownID}}" class="collapse">
+                <li ng-repeat="dropdown in feature.dropdowns">
+                    <a href="#">{{dropdown.title}}</a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
