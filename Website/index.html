@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/maps.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -33,6 +34,9 @@
     <!-- AngularJS -->
     <script src="js/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-route.js"></script>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 </head>
 
 <body>
@@ -50,8 +54,11 @@
             <left-bar></left-bar>
         </nav>
 
-        <div id="page-wrapper" ng-view>
-            <!-- Content Loads Here -->
+        <div id="page-wrapper">
+            <div class="container-fluid" ng-view>
+                <!-- Content Loads Here -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
 
@@ -70,8 +77,11 @@
     <script src="js/plugins/morris/morris-data.js"></script> -->
 
     <script src="js/app.js"></script>
-    <script src="structure/structure.js"></script>
-    <script src="pages/pages.js"></script>
+    <script src="js/structure.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="controllers/dashboardController.js"></script>
+    <script src="controllers/mapsController.js"></script>
+    <script src="controllers/loginController.js"></script>
 </body>
 
 </html>
