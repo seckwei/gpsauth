@@ -4,6 +4,32 @@
         // Display title on View
         this.title = data.title();
 
+        /*
+            Boundaries Data - to be retrieved from database
+
+            boundaries -> array of {name, vertices}
+            name -> String
+            vertices -> array of {lat, lng}
+        */
+        this.boundaries = [
+            {
+                name : "Main Building",
+                vertices : [
+                    {lat : 50, lng : 50},
+                    {lat : 51, lng : 51},
+                    {lat : 52, lng : 53}
+                ]
+            },
+            {
+                name : "Building #2",
+                vertices : [
+                    {lat : 00, lng : 00},
+                    {lat : 00, lng : 00},
+                    {lat : 00, lng : 00}
+                ]
+            }
+        ];
+
         // Polygon is the combination of the vertices - Google Map's Object
         var polygon;
 

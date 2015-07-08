@@ -33,32 +33,34 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-12">
-                        <!-- Controls and Operations -->
+                        <!-- Panel for Controls and Operations -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <b>Boundaries Setting</b>
                             </div>
                             <div class="panel-body clearfix">
                                 <div class="row">
-                                    <div class="col-lg-3 col-xl-2">
+                                    <!-- Panel for Each Location -->
+                                    <div class="col-lg-3 col-xl-3" ng-repeat="boundary in mapsCtrl.boundaries">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                // Location Name
+                                                {{boundary.name}}
                                             </div>
+                                            <!-- Location Body -->
                                             <div class="panel-body">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item">// Point 1 : </li>
-                                                    <li class="list-group-item">// Point 2 : </li>
-                                                    <li class="list-group-item">// Point 3 : </li>
+                                                    <li class="list-group-item" ng-repeat="vertex in boundary.vertices"><b>Point {{$index+1}}</b> : {{vertex.lat + "," + vertex.lng}}</li>
                                                 </ul>
                                                 <div class="space-between">
-                                                    <button class="btn btn-default"><i class="fa fa-pencil fa-lg"></i></button>
-                                                    <button class="btn btn-default"><i class="fa fa-map-marker fa-lg"></i></button>
-                                                    <button class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete</button>
+                                                    <button class="btn btn-default"><i class="fa fa-pencil fa-lg"></i><span class="visible-xl-inline"> Edit</span></button>
+                                                    <button class="btn btn-default"><i class="fa fa-map-marker fa-lg"></i><span class="visible-xl-inline"> Show on Map</span></button>
+                                                    <button class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i><span> Delete</span></button>
                                                 </div>
                                             </div>
+                                            <!-- End of Location Body -->
                                         </div>
                                     </div>
+                                    <!-- End of Panel for Each Location -->
                                 </div>
                                 <div class="btn-group-sm pull-right">
                                     <button class="btn btn-default">New Boundaries</button>
@@ -66,6 +68,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- End of Panel for Controls and Operations -->
                     </div>
                 </div>
             </div>
