@@ -41,7 +41,7 @@
                             <div class="panel-body clearfix">
                                 <div class="row">
                                     <!-- Panel for Each Location -->
-                                    <div class="col-lg-3 col-xl-3" ng-repeat="boundary in mapsCtrl.boundaries">
+                                    <div class="col-sm-4 col-md-4 col-lg-3 col-xl-3" ng-repeat="boundary in mapsCtrl.boundaries">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 {{boundary.name}}
@@ -63,7 +63,7 @@
                                     <!-- End of Panel for Each Location -->
                                 </div>
                                 <div class="btn-group-sm pull-right">
-                                    <button class="btn btn-default">New Boundaries</button>
+                                    <button class="btn btn-default" onclick="maps.newBoundary()">New Boundary</button>
                                     <button class="btn btn-primary">Save Setting</button>
                                 </div>
                             </div>
