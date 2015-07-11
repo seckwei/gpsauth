@@ -1,16 +1,159 @@
-pages.controller('mapsCtrl', function(data){
+pages.controller('mapsCtrl', function($scope, data){
+
+    $scope.Maps = {
+
+        map : {},
+        boundaries: [],
+        polygons: [],
+        currentEdit: -1,
+
+        createNewBoundary: function(){
+
+            // Get the center of current map's view
+            var center = {
+                lat : parseFloat(this.map.center.A),
+                lng : parseFloat(this.map.center.F)
+            };
+            var offset = 0.05;
+
+            var newBoundary = {
+                name : 'Unnamed Boundary',
+                vertices : [
+                    {lat : center.lat + offset,     lng : center.lng - offset},
+                    {lat : center.lat + offset,     lng : center.lng + offset},
+                    {lat : center.lat - offset/2,   lng : center.lng}
+                ]
+            };
+
+            // Add to the existing array of Boundaries and Polygons
+            this.boundaries.push(newBoundary);
+            this.polygons.push(
+                this.createGoogleMapsPolygon(newBoundary.vertices)
+            );
+        },
+
+        // Returns Google Map's LatLng object
+        createGoogleMapsLatLng: function (lat, lng){
+            return new google.maps.LatLng(lat, lng);
+        },
+
+        // Polygon as the authenticated area
+        createGoogleMapsPolygon: function (vertices) {
+
+            /*
+             Construct a draggable blue triangle with Geodesic set to false.
+
+             Geodesic means that the polygon will stretch / shrink from
+             the perspective of 2D map
+             according to the Earth's curved surface.
+             */
+
+            // Converting numbers into Google Maps' LatLng object
+            for(var ind in vertices){
+                vertices[ind] = this.createGoogleMapsLatLng(vertices[ind].lat, vertices[ind].lng);
+            }
+
+            return new google.maps.Polygon({
+                map: this.map,
+                paths: vertices,
+                strokeColor: '#0000FF',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#0000FF',
+                fillOpacity: 0.35,
+                draggable: true,
+                geodesic: false,
+                editable: true
+            });
+
+            /*
+             POLYGON EVENT LISTENERS
+
+             // New point Inserted
+             google.maps.event.addListener(polygon.getPath(), 'insert_at', function() {
+             console.log("New Point Added", getVertices(polygon));
+             vertices = getVertices(polygon);
+             });
+
+             // Polygon Dragged
+             google.maps.event.addListener(polygon, 'dragend', function() {
+             console.log("Shape Dragged", getVertices(polygon));
+             vertices = getVertices(polygon);
+             });
+
+             // Point Updated
+             google.maps.event.addListener(polygon.getPath(), 'set_at', function() {
+             console.log("Point Updated", getVertices(polygon));
+             vertices = getVertices(polygon);
+             });
+             */
+        },
+
+        // Populate map with polygons
+        populatePolygons: function(){
+            for(var ind in this.boundaries){
+                this.polygons.push(
+                    this.createGoogleMapsPolygon(this.boundaries[ind].vertices)
+                );
+            }
+        },
+
+        // Edit a boundary
+        editBoundary: function(index){
+
+        },
+
+        // Delete a boundary
+        deleteBoundary: function(index){
+            // Remove '1' item at position 'index'
+            this.boundaries.splice(index, 1);
+
+            // Remove the Polygon from map before
+            // removing from array
+            this.polygons[index].setMap(null);
+            this.polygons.splice(index,1);
+        },
+
+        // Reset default vertices
+        resetCoords: function (){
+            polygon.setPaths(vertices);
+        },
+
+        // Sending info to server
+        sendCoords: function(){
+
+            var obj = {
+                "clientid" : clientid,
+                "coords" : getVertices(polygon)
+            };
+
+            console.log(JSON.stringify(obj));
+
+            $.ajax({
+                type: "POST",
+                url: "http://172.16.7.243:9000/clients/borders",
+                data: JSON.stringify(obj),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function(){
+                    alert("Success");
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest, textStatus, errorThrown);
+                }
+            });
+
+            // Send JSON.stringify(obj) to server
+            // Receive response
+        }
+
+    };
 
     // Display title on View
-    this.title = data.title();
+    $scope.title = data.title();
 
-    /*
-        Boundaries Data - to be retrieved from database
-
-        boundaries -> array of {name, vertices}
-        name -> String
-        vertices -> array of {lat, lng}
-    */
-    this.boundaries = [
+    // Boundaries Data - to be retrieved from database
+    $scope.Maps.boundaries = [
         {
             name : "Main Building",
             vertices : [
@@ -22,27 +165,19 @@ pages.controller('mapsCtrl', function(data){
         {
             name : "Building #2",
             vertices : [
-                {lat : 00, lng : 00},
-                {lat : 00, lng : 00},
-                {lat : 00, lng : 00}
+                {lat : 10, lng : 10},
+                {lat : 20, lng : 20},
+                {lat : 30, lng : 30}
             ]
         }
     ];
 
-    // Polygon is the combination of the vertices - Google Map's Object
+    // Combination of the vertices - Google Map's Object
     var polygon;
 
     // Default client id - subject to change
     var clientid = "innovationwarehouse";
 
-    /*
-        Data from Database
-     */
-    var vertices = [
-        /*new google.maps.LatLng(51.519558, -0.103953),
-        new google.maps.LatLng(51.519671, -0.101109),
-        new google.maps.LatLng(51.518537, -0.102740)*/
-    ];
 
     /*
          GetLocation() -> InitiliazeGoogleMaps()
@@ -53,13 +188,13 @@ pages.controller('mapsCtrl', function(data){
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 function(position) {
-                    initializeGoogleMaps(maps.googleMapsLatLng(position.coords.latitude, position.coords.longitude));
+                    initializeGoogleMaps($scope.Maps.createGoogleMapsLatLng(position.coords.latitude, position.coords.longitude));
                 },function(){
-                    initializeGoogleMaps(maps.googleMapsLatLng(60, -0.102740));
+                    initializeGoogleMaps($scope.Maps.createGoogleMapsLatLng(60, -0.102740));
             });
         } else {
             alert("Geolocation is not supported by this browser.");
-            initializeGoogleMaps(maps.googleMapsLatLng(60, -0.102740));
+            initializeGoogleMaps($scope.Maps.createGoogleMapsLatLng(60, -0.102740));
         }
     })();
 
@@ -73,11 +208,12 @@ pages.controller('mapsCtrl', function(data){
         };
 
         // Construct a new Map
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        $scope.Maps.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-        googleMapsSearchBox(map);
+        googleMapsSearchBox($scope.Maps.map);
+        $scope.Maps.populatePolygons();
 
-        polygon = maps.googleMapsPolygon(map, vertices);
+        //polygon = maps.createGoogleMapsPolygon(map, vertices);
     };
 
     // Adding a Search Box into the Google Maps
@@ -148,117 +284,7 @@ pages.controller('mapsCtrl', function(data){
         return coords;
     }
 
-    /*
-        Reset default vertices
-     */
-    function resetCoords(){
-        polygon.setPaths(vertices);
-    }
-
-    /*
-        Sending info to server
-     */
-    function sendCoords(){
-
-        var obj = {
-            "clientid" : clientid,
-            "coords" : getVertices(polygon)
-        }
-
-        console.log(JSON.stringify(obj));
-
-        $.ajax({
-            type: "POST",
-            url: "http://172.16.7.243:9000/clients/borders",
-            data: JSON.stringify(obj),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function(){
-                alert("Success");
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                console.log(XMLHttpRequest, textStatus, errorThrown);
-            }
-        });
-
-        // Send JSON.stringify(obj) to server
-        // Receive response
-    }
 
 });
 
-var map;
 
-var maps = {
-
-    newBoundary: function(){
-
-        // Get the center of current map's view
-        var center = {
-            lat : map.center.A,
-            lng : map.center.F
-        };
-
-        var offset = 0.05;
-
-        var vertices = [
-            this.googleMapsLatLng(center.lat + offset, center.lng - offset),
-            this.googleMapsLatLng(center.lat + offset, center.lng + offset),
-            this.googleMapsLatLng(center.lat - offset/2, center.lng)
-        ];
-
-        var polygon = this.googleMapsPolygon(map, vertices);
-    },
-
-    // Returns Google Map's LatLng object
-    googleMapsLatLng: function (lat, lng){
-        return new google.maps.LatLng(lat, lng);
-    },
-
-    // Polygon as the authenticated area
-    googleMapsPolygon: function (map, vertices) {
-
-        /*
-         Construct a draggable blue triangle with Geodesic set to false.
-
-         Geodesic means that the polygon will stretch / shrink from
-         the perspective of 2D map
-         according to the Earth's curved surface.
-         */
-
-        return new google.maps.Polygon({
-            map: map,
-            paths: vertices,
-            strokeColor: '#0000FF',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#0000FF',
-            fillOpacity: 0.35,
-            draggable: true,
-            geodesic: false,
-            editable: true
-        });
-
-        /*
-         POLYGON EVENT LISTENERS
-
-         // New point Inserted
-         google.maps.event.addListener(polygon.getPath(), 'insert_at', function() {
-         console.log("New Point Added", getVertices(polygon));
-         vertices = getVertices(polygon);
-         });
-
-         // Polygon Dragged
-         google.maps.event.addListener(polygon, 'dragend', function() {
-         console.log("Shape Dragged", getVertices(polygon));
-         vertices = getVertices(polygon);
-         });
-
-         // Point Updated
-         google.maps.event.addListener(polygon.getPath(), 'set_at', function() {
-         console.log("Point Updated", getVertices(polygon));
-         vertices = getVertices(polygon);
-         });
-         */
-    }
-}
