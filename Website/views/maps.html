@@ -49,10 +49,10 @@
                                             <!-- Location Body -->
                                             <div class="panel-body">
                                                 <ul class="list-group collapse" id="vertices-{{$index}}">
-                                                    <li class="list-group-item" ng-repeat="vertex in boundary.vertices"><b>Point {{$index+1}}</b> : {{(vertex.A || vertex.lat) | number:4}} , {{(vertex.F || vertex.lng) | number:4}}</li>
+                                                    <li class="list-group-item" ng-repeat="vertex in boundary.vertices track by $index"><b>Point {{$index+1}}</b> : {{(vertex.A || vertex.lat) | number:4}} , {{(vertex.F || vertex.lng) | number:4}}</li>
                                                 </ul>
                                                 <div class="space-between">
-                                                    <button class="btn btn-default"><i class="fa fa-pencil fa-lg"></i><span class="visible-xl-inline"> Edit</span></button>
+                                                    <button class="btn btn-default" ng-click="Maps.editBoundary($index)"><i class="fa fa-pencil fa-lg"></i><span class="visible-xl-inline"> Edit</span></button>
                                                     <button class="btn btn-default"><i class="fa fa-map-marker fa-lg"></i><span class="visible-xl-inline"> Show on Map</span></button>
                                                     <button class="btn btn-danger" ng-click="Maps.deleteBoundary($index)"><i class="fa fa-trash-o fa-lg"></i><span> Delete</span></button>
                                                 </div>

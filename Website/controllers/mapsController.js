@@ -61,9 +61,9 @@ pages.controller('mapsCtrl', function($scope, data){
                 strokeWeight: 2,
                 fillColor: '#0000FF',
                 fillOpacity: 0.35,
-                draggable: true,
+                draggable: false,
                 geodesic: false,
-                editable: true
+                editable: false
             });
 
             /*
@@ -71,20 +71,20 @@ pages.controller('mapsCtrl', function($scope, data){
 
              // New point Inserted
              google.maps.event.addListener(polygon.getPath(), 'insert_at', function() {
-             console.log("New Point Added", getVertices(polygon));
-             vertices = getVertices(polygon);
+                 console.log("New Point Added", getPolygonVertices(polygon));
+                 vertices = getPolygonVertices(polygon);
              });
 
              // Polygon Dragged
              google.maps.event.addListener(polygon, 'dragend', function() {
-             console.log("Shape Dragged", getVertices(polygon));
-             vertices = getVertices(polygon);
+                 console.log("Shape Dragged", getPolygonVertices(polygon));
+                 vertices = getPolygonVertices(polygon);
              });
 
              // Point Updated
              google.maps.event.addListener(polygon.getPath(), 'set_at', function() {
-             console.log("Point Updated", getVertices(polygon));
-             vertices = getVertices(polygon);
+                 console.log("Point Updated", getPolygonVertices(polygon));
+                 vertices = getPolygonVertices(polygon);
              });
              */
         },
@@ -101,6 +101,20 @@ pages.controller('mapsCtrl', function($scope, data){
         // Edit a boundary
         editBoundary: function(index){
 
+            // If another Boundary is already being edited
+            if(this.currentEdit > -1){
+                // Remove the listener from old Bounds
+                this.setPolygonEventListeners(this.polygons[this.currentEdit], false);
+
+                // Change draggable to false
+                this.setPolygonEditable(this.polygons[this.currentEdit], false);
+            }
+
+            // Add listener to New Bounds
+            this.currentEdit = index;
+
+            this.setPolygonEditable(this.polygons[this.currentEdit], true);
+            this.setPolygonEventListeners(this.polygons[this.currentEdit], true);
         },
 
         // Delete a boundary
@@ -114,6 +128,77 @@ pages.controller('mapsCtrl', function($scope, data){
             this.polygons.splice(index,1);
         },
 
+        // Get the vertices of a polygon
+        getPolygonVertices: function(polygon){
+            var vertices = [];
+            var LatLng = {};
+
+            //console.log(polygon);
+
+            for(var ind in polygon.getPath().j){
+                LatLng.lat = polygon.getPath().j[ind].A;
+                LatLng.lng = polygon.getPath().j[ind].F;
+                vertices.push(LatLng);
+            }
+            return vertices;
+        },
+
+        // Get the vertices of a path
+        getPathVertices: function(path){
+            var vertices = [];
+            var LatLng = {};
+
+            //console.log(polygon);
+
+            for(var ind in path.j){
+                LatLng.lat = path.j[ind].A;
+                LatLng.lng = path.j[ind].F;
+                vertices.push(LatLng);
+            }
+            return vertices;
+        },
+
+        // Set Polygon's Editable and Draggable properties
+        setPolygonEditable: function(polygon, bool){
+            polygon.setOptions({draggable : bool});
+            polygon.setOptions({editable : bool});
+        },
+
+        // Set Polygon's Event Listeners On / Off
+        setPolygonEventListeners: function(polygon, bool){
+            if(bool){
+
+                // Dragging the Polygon
+                google.maps.event.addListener(polygon, 'dragend', function() {
+                    // Update the vertices in Boundaries
+                    $scope.Maps.boundaries[$scope.Maps.currentEdit].vertices = $scope.Maps.getPolygonVertices(this);
+                    $scope.$apply();
+                });
+
+                // Creating a new Vertex
+                google.maps.event.addListener(polygon.getPath(), 'insert_at', function() {
+                    // Update the vertices in Boundaries
+                    $scope.Maps.boundaries[$scope.Maps.currentEdit].vertices = $scope.Maps.getPathVertices(this);
+                    $scope.$apply();
+                });
+
+                // Right click to delete a Vertex - Polygon has to be Editable first
+                google.maps.event.addListener(polygon, 'rightclick', function(polygon) {
+                    if(polygon.vertex != null && this.getPath().getLength() > 3){
+                        this.getPath().removeAt(polygon.vertex);
+
+                        $scope.Maps.boundaries[$scope.Maps.currentEdit].vertices = $scope.Maps.getPolygonVertices(this);
+                        $scope.$apply();
+                    }
+                });
+            }
+            else {
+                google.maps.event.clearListeners(polygon, 'dragend');
+                google.maps.event.clearListeners(polygon.getPath(), 'insert_at');
+                google.maps.event.clearListeners(polygon, 'rightclick');
+            }
+        },
+
         // Reset default vertices
         resetCoords: function (){
             polygon.setPaths(vertices);
@@ -124,7 +209,7 @@ pages.controller('mapsCtrl', function($scope, data){
 
             var obj = {
                 "clientid" : clientid,
-                "coords" : getVertices(polygon)
+                "coords" : getPolygonVertices(polygon)
             };
 
             console.log(JSON.stringify(obj));
@@ -157,17 +242,17 @@ pages.controller('mapsCtrl', function($scope, data){
         {
             name : "Main Building",
             vertices : [
-                {lat : 50, lng : 50},
-                {lat : 51, lng : 51},
-                {lat : 52, lng : 53}
+                {lat : 53.5867, lng : -2.1518},
+                {lat : 53.5867, lng : -2.0518},
+                {lat : 53.5117, lng : -2.1018}
             ]
         },
         {
             name : "Building #2",
             vertices : [
-                {lat : 10, lng : 10},
-                {lat : 20, lng : 20},
-                {lat : 30, lng : 30}
+                {lat : 53.5350, lng : -2.4049},
+                {lat : 53.5350, lng : -2.3049},
+                {lat : 53.4600, lng : -2.3549}
             ]
         }
     ];
@@ -275,14 +360,7 @@ pages.controller('mapsCtrl', function($scope, data){
         });
     }
 
-    // Get the vertices of a polygon
-    function getVertices(polygon){
-        var coords = [];
-        for(var ind in polygon.getPath().j){
-            coords.push(polygon.getPath().j[ind].A + "," + polygon.getPath().j[ind].F);
-        }
-        return coords;
-    }
+
 
 
 });
